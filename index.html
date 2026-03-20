@@ -1,1272 +1,1474 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LG Shoes - Calzature Artigianali Italiane</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --gold: #c9a961;
-            --dark: #1a1a1a;
-            --light: #f8f6f3;
-            --white: #ffffff;
-            --gray: #666666;
-            --whatsapp: #25d366;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            background-color: var(--light);
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo span {
-            color: var(--gold);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 2px;
-            background: var(--dark);
-            transition: all 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(26,26,26,0.7) 0%, rgba(26,26,26,0.4) 100%),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f5f0e8" width="1200" height="800"/><path fill="%23e8e0d0" d="M0 400c200-50 400-100 600-50s400 100 600 50v400H0z"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            font-weight: 300;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--gold);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border: 2px solid var(--gold);
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: transparent;
-            color: var(--gold);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--white);
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background: var(--white);
-            color: var(--dark);
-        }
-
-        .btn-whatsapp {
-            background: var(--whatsapp);
-            border-color: var(--whatsapp);
-        }
-
-        .btn-whatsapp:hover {
-            background: transparent;
-            color: var(--whatsapp);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator::after {
-            content: '↓';
-            font-size: 2rem;
-            color: var(--gold);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .section-header p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .divider {
-            width: 60px;
-            height: 3px;
-            background: var(--gold);
-            margin: 1.5rem auto;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--white);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image-placeholder {
-            width: 100%;
-            height: 500px;
-            background: linear-gradient(135deg, #e8e0d0 0%, #d4c8b8 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: var(--gold);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image-placeholder::before {
-            content: '👠';
-            opacity: 0.3;
-        }
-
-        .about-image::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: -20px;
-            bottom: -20px;
-            border: 3px solid var(--gold);
-            z-index: -1;
-        }
-
-        .about-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-content p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        .values {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .value-item {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .value-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .value-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .value-item p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin: 0;
-        }
-
-        /* Mission Section */
-        .mission {
-            background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mission::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(201,169,97,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .mission .section-header h2 {
-            color: var(--white);
-        }
-
-        .mission .section-header p {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .mission-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .mission-content p {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .mission-highlights {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .mission-item {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .mission-item i {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .mission-item h4 {
-            color: var(--white);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .mission-item p {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.6);
-            margin: 0;
-        }
-
-        /* Services Section */
-        .services {
-            background: var(--light);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            border-bottom: 4px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-            border-bottom-color: var(--gold);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--gold) 0%, #b8984f 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-        }
-
-        .service-icon i {
-            font-size: 2rem;
-            color: var(--white);
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .service-card p {
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        /* Products Section */
-        .products {
-            background: var(--white);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .product-card {
-            background: var(--white);
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .product-image {
-            height: 350px;
-            background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card:nth-child(1) .product-image::before { content: '👠'; }
-        .product-card:nth-child(2) .product-image::before { content: '🥿'; }
-        .product-card:nth-child(3) .product-image::before { content: '👢'; }
-
-        .product-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--gold);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .product-info {
-            padding: 2rem;
-        }
-
-        .product-category {
-            color: var(--gold);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .product-info p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .product-features {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .feature-tag {
-            background: var(--light);
-            padding: 0.4rem 0.8rem;
-            font-size: 0.8rem;
-            color: var(--gray);
-            border-radius: 20px;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--dark);
-            color: var(--white);
-        }
-
-        .contact .section-header h2 {
-            color: var(--white);
-        }
-
-        .contact .section-header p {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: var(--gold);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(201, 169, 97, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .contact-item h4 {
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-            color: var(--white);
-        }
-
-        .contact-item p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1rem;
-        }
-
-        .contact-item a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: var(--gold);
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: var(--whatsapp);
-            color: var(--white);
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            background: #128c7e;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-btn i {
-            font-size: 1.3rem;
-        }
-
-        .map-container {
-            background: #2a2a2a;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 100%;
-            min-height: 450px;
-            position: relative;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            min-height: 450px;
-            border: none;
-        }
-
-        /* Social Section */
-        .social-section {
-            background: var(--light);
-            padding: 4rem 2rem;
-        }
-
-        .social-grid {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .social-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--dark);
-            transition: all 0.3s ease;
-        }
-
-        .social-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .social-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0.8rem;
-            font-size: 1.8rem;
-            color: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .social-item:hover .social-icon {
-            transform: scale(1.1);
-        }
-
-        .social-icon.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-        .social-icon.facebook { background: #1877f2; }
-        .social-icon.linkedin { background: #0077b5; }
-        .social-icon.youtube { background: #ff0000; }
-
-        .social-item span {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #111;
-            color: rgba(255,255,255,0.6);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo span {
-            color: var(--gold);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .footer-social a {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            background: var(--gold);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .products-grid,
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .mission-highlights {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu {
-                display: flex;
-                z-index: 1001;
-            }
-
-            .mobile-menu.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .mobile-menu.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-menu.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .products-grid,
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .values,
-            .mission-highlights {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 1rem;
-            }
-
-            .social-grid {
-                gap: 2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LG Shoes – Tomaificio d'Eccellenza</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold:    #c9a96e;
+      --gold-lt: #e8d5a3;
+      --dark:    #1a1a1a;
+      --mid:     #3a3a3a;
+      --light:   #f7f4ef;
+      --white:   #ffffff;
+      --nav-h:   72px;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans:  'Segoe UI', Arial, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    /* ════════════════════════════════
+       NAVBAR
+    ════════════════════════════════ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      background: rgba(14,14,14,0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,169,110,0.18);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      height: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+    }
+
+    /* ── Logo ── */
+    .nav-logo {
+      text-decoration: none;
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 2px; flex-shrink: 0;
+    }
+    .nav-logo .brand {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; color: var(--gold);
+      letter-spacing: 4px; font-style: italic; line-height: 1;
+    }
+    .nav-logo .company {
+      font-size: 0.5rem; letter-spacing: 3px;
+      text-transform: uppercase; font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      line-height: 1;
+    }
+
+    /* ── Desktop links ── */
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none; font-size: 0.75rem;
+      letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500;
+      transition: color .25s; position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .3s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    /* ── Burger ── */
+    .burger {
+      display: none;
+      flex-direction: column; justify-content: center;
+      gap: 6px; cursor: pointer;
+      background: none; border: none;
+      width: 44px; height: 44px; padding: 8px;
+      position: relative; z-index: 2100;
+    }
+    .burger span {
+      display: block; width: 26px; height: 1.5px;
+      background: var(--gold); border-radius: 2px;
+      transform-origin: center;
+      transition: transform .4s cubic-bezier(.4,0,.2,1),
+                  opacity   .3s ease,
+                  width     .3s ease;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ══════════════════════════════════
+       FULL-SCREEN MOBILE MENU
+    ══════════════════════════════════ */
+    .mobile-menu {
+      position: fixed; inset: 0;
+      z-index: 2000;
+      background: #0e0e0e;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .45s cubic-bezier(.4,0,.2,1);
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* decorative top line */
+    .mobile-menu::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+    }
+
+    /* logo inside mobile menu */
+    .mobile-menu-logo {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 3px;
+    }
+    .mobile-menu-logo .m-brand {
+      font-family: var(--font-serif);
+      font-size: 1.4rem; color: var(--gold);
+      letter-spacing: 4px; font-style: italic;
+    }
+    .mobile-menu-logo .m-company {
+      font-size: 0.47rem; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      font-weight: 700;
+    }
+
+    /* nav items */
+    .mobile-menu-links {
+      list-style: none; text-align: center;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .mobile-menu-links li {
+      overflow: hidden;
+    }
+    .mobile-menu-links a {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 8vw, 3.2rem);
+      font-style: italic; color: rgba(255,255,255,0.55);
+      text-decoration: none; letter-spacing: 2px;
+      padding: .4rem 2rem;
+      transition: color .3s;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: color .3s, transform .5s cubic-bezier(.4,0,.2,1), opacity .5s ease;
+    }
+    .mobile-menu.open .mobile-menu-links a {
+      transform: translateY(0); opacity: 1;
+    }
+    .mobile-menu-links li:nth-child(1) a { transition-delay: .05s; }
+    .mobile-menu-links li:nth-child(2) a { transition-delay: .12s; }
+    .mobile-menu-links li:nth-child(3) a { transition-delay: .19s; }
+    .mobile-menu-links li:nth-child(4) a { transition-delay: .26s; }
+    .mobile-menu-links a:hover { color: var(--gold); }
+
+    /* gold separator */
+    .mobile-sep {
+      width: 40px; height: 1px;
+      background: var(--gold); opacity: .4;
+      margin: 1.5rem auto;
+    }
+
+    /* ── Close button inside mobile menu ── */
+    .mobile-menu-close {
+      position: absolute; top: calc(var(--nav-h) / 2); right: 1.2rem;
+      transform: translateY(-50%);
+      z-index: 10;                          /* sopra il logo-div */
+      background: none; border: 1px solid rgba(201,169,110,0.3);
+      color: var(--gold); font-size: 1rem;
+      width: 38px; height: 38px; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+      line-height: 1;
+    }
+    .mobile-menu-close:hover {
+      background: rgba(201,169,110,0.12); border-color: var(--gold);
+    }
+
+    /* bottom contact strip */
+    .mobile-menu-footer {
+      position: absolute; bottom: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .5s .35s, transform .5s .35s;
+    }
+    .mobile-menu.open .mobile-menu-footer {
+      opacity: 1; transform: translateY(0);
+    }
+    .mobile-menu-footer a {
+      color: rgba(255,255,255,0.35); text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 1.5px;
+      transition: color .2s;
+    }
+    .mobile-menu-footer a:hover { color: var(--gold); }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    #home {
+      height: 100vh;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2219 50%, #1a1a1a 100%);
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    #home::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 40%, rgba(201,169,110,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(201,169,110,0.06) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 2rem; }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,169,110,0.5);
+      color: var(--gold);
+      font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+      padding: 6px 20px; border-radius: 2px; margin-bottom: 2rem;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--white); line-height: 1.08;
+      font-style: italic; margin-bottom: 1.5rem;
+    }
+    .hero-title span { color: var(--gold); }
+    .hero-sub {
+      color: rgba(255,255,255,0.6); font-size: 1rem;
+      letter-spacing: 1px; max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--gold); color: var(--dark);
+      text-decoration: none; font-size: 0.78rem;
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+      padding: 14px 36px; border-radius: 2px;
+      transition: background .25s, transform .2s;
+    }
+    .hero-cta:hover { background: var(--gold-lt); transform: translateY(-2px); }
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.3); font-size: 0.68rem; letter-spacing: 2px;
+      text-transform: uppercase; animation: bounce 2s infinite;
+    }
+    .scroll-hint::after { content: '↓'; display: block; text-align: center; margin-top: 4px; font-size: 1rem; }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ════════════════════════════════
+       SECTION COMMONS
+    ════════════════════════════════ */
+    section { padding: 100px 2rem; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; font-weight: 600;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--dark); font-style: italic;
+      line-height: 1.15; margin-bottom: 1.5rem;
+    }
+    .section-line { width: 50px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ════════════════════════════════
+       CHI SIAMO
+    ════════════════════════════════ */
+    #chi-siamo { background: var(--light); }
+    .chi-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .chi-text p { color: var(--mid); margin-bottom: 1.2rem; font-size: 0.97rem; }
+    .chi-text .highlight {
+      font-family: var(--font-serif); font-size: 1.1rem; color: var(--dark);
+      font-style: italic; border-left: 3px solid var(--gold); padding-left: 1.2rem;
+      margin: 2rem 0;
+    }
+    .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
+    .value-card {
+      background: var(--white);
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 4px; padding: 1.3rem;
+      transition: border-color .3s, transform .3s;
+    }
+    .value-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .value-icon { font-size: 1.4rem; margin-bottom: .5rem; }
+    .value-card h4 { font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+    .value-card p { font-size: 0.83rem; color: var(--mid); }
+
+    /* right column */
+    .chi-right { display: flex; flex-direction: column; gap: 2rem; }
+    .info-panel {
+      background: var(--white);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 6px; padding: 2rem;
+    }
+    .info-panel h3 {
+      font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.2rem;
+    }
+    .info-panel p {
+      color: var(--mid); font-size: 0.9rem; line-height: 1.75;
+    }
+    .audit-badges { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .audit-badge {
+      background: var(--dark); color: var(--gold);
+      font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 7px 14px; border-radius: 2px; font-weight: 600;
+    }
+
+    /* ════════════════════════════════
+       BRANDS STRIP (full-width ticker)
+    ════════════════════════════════ */
+    .brands-strip {
+      background: var(--dark);
+      padding: 3rem 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(201,169,110,0.1);
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+    }
+    .brands-strip-label {
+      text-align: center;
+      font-size: 0.62rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.5);
+      margin-bottom: 1.8rem;
+    }
+    .ticker-wrap {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker-scroll 24s linear infinite;
+      /* mai in pausa – loop continuo */
+    }
+    .ticker-item {
+      display: flex; align-items: center;
+      white-space: nowrap;
+    }
+    .ticker-item .t-name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 2px;
+      padding: 0 2.8rem;
+      cursor: default;
+    }
+    .ticker-sep {
+      color: var(--gold);
+      opacity: 0.7;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ════════════════════════════════
+       PRODUZIONE
+    ════════════════════════════════ */
+    #produzione { background: var(--dark); }
+    #produzione .section-title { color: var(--white); }
+    .prod-intro { color: rgba(255,255,255,0.55); max-width: 640px; margin-bottom: 3.5rem; font-size: 0.97rem; }
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.08);
+    }
+    .prod-step {
+      background: var(--dark);
+      padding: 2rem 1.6rem;
+      transition: background .3s;
+    }
+    .prod-step:hover { background: rgba(201,169,110,0.05); }
+    .prod-num {
+      font-family: var(--font-serif); font-size: 2.2rem;
+      color: rgba(201,169,110,0.18); font-style: italic;
+      line-height: 1; margin-bottom: .8rem;
+    }
+    .prod-step h4 { font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: .6rem; }
+    .prod-step p { font-size: 0.83rem; color: rgba(255,255,255,0.45); }
+
+    /* ════════════════════════════════
+       CONTATTI
+    ════════════════════════════════ */
+    #contatti { background: var(--light); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-info p { color: var(--mid); margin-bottom: 2rem; font-size: 0.95rem; }
+    .info-block { margin-bottom: 2rem; }
+    .info-block h4 { font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: .7rem; }
+    .info-row { display: flex; align-items: flex-start; gap: .7rem; margin-bottom: .5rem; }
+    .info-row .icon { font-size: 1rem; flex-shrink: 0; margin-top: 3px; }
+    .info-row span { font-size: 0.88rem; color: var(--mid); }
+    .info-row a { color: var(--mid); text-decoration: none; transition: color .2s; }
+    .info-row a:hover { color: var(--gold); }
+
+    /* Social */
+    .social-block { margin-top: 2rem; }
+    .social-block h4 { font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .social-buttons { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      text-decoration: none; font-size: 0.76rem; font-weight: 600;
+      letter-spacing: .5px; padding: 9px 16px; border-radius: 5px;
+      transition: opacity .2s, transform .2s; border: none; cursor: pointer;
+      white-space: nowrap;
+    }
+    .social-btn:hover { opacity: .82; transform: translateY(-2px); }
+    .social-btn svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+    .social-btn.instagram { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4); color:#fff; }
+    .social-btn.facebook  { background: #1877f2; color: #fff; }
+    .social-btn.linkedin  { background: #0a66c2; color: #fff; }
+    .social-btn.whatsapp  { background: #25d366; color: #fff; }
+    .social-btn.tiktok    { background: #111; color: #fff; border: 1px solid rgba(255,255,255,0.12); }
+
+    /* Map */
+    .map-wrapper {
+      margin-top: 2rem;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(201,169,110,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Form */
+    .contact-form {
+      background: var(--white); border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 6px; padding: 2.5rem;
+    }
+    .contact-form h3 {
+      font-family: var(--font-serif); font-size: 1.5rem; font-style: italic;
+      margin-bottom: 1.8rem; color: var(--dark);
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block; font-size: 0.7rem; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--mid); margin-bottom: .5rem; font-weight: 600;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; border: 1px solid rgba(0,0,0,0.15); border-radius: 3px;
+      padding: 11px 14px; font-family: var(--font-sans); font-size: 0.9rem;
+      color: var(--dark); background: var(--white);
+      transition: border-color .25s, box-shadow .25s; outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,169,110,0.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-submit {
+      display: block; width: 100%;
+      background: var(--dark); color: var(--gold);
+      border: none; cursor: pointer;
+      font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 700; padding: 14px; border-radius: 2px;
+      transition: background .25s, color .25s; font-family: var(--font-sans);
+    }
+    .btn-submit:hover { background: var(--gold); color: var(--dark); }
+    .form-note { font-size: 0.72rem; color: rgba(0,0,0,0.35); margin-top: .8rem; text-align: center; }
+    .form-success {
+      display: none; text-align: center; padding: 2.5rem;
+      color: var(--gold); font-family: var(--font-serif);
+      font-size: 1.2rem; font-style: italic;
+    }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer {
+      background: var(--dark); padding: 3rem 2rem 2rem;
+      text-align: center; border-top: 1px solid rgba(201,169,110,0.15);
+    }
+    .footer-logo { font-family: var(--font-serif); font-size: 1.8rem; color: var(--gold); font-style: italic; letter-spacing: 3px; margin-bottom: .2rem; }
+    .footer-company { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 2rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.78rem; letter-spacing: 1px; transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 1.5rem auto; max-width: 400px; }
+    .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.22); letter-spacing: .5px; }
+    .footer-piva { font-size: 0.68rem; color: rgba(255,255,255,0.15); margin-top: .3rem; }
+
+    /* ════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════ */
+    @media (max-width: 960px) {
+      .chi-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      .burger { display: flex; }
+      .nav-links { display: none; }        /* hidden on mobile – use full-screen menu */
+      .nav-inner { padding: 0 1rem; }
+      section { padding: 70px 1.2rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .audit-badges { flex-wrap: wrap; }
+    }
+    @media (max-width: 480px) {
+      .social-buttons { gap: .5rem; }
+      .social-btn { font-size: 0.72rem; padding: 8px 12px; }
+      .prod-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 360px) {
+      .prod-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ════════════════════════════════
+       CRAFT ANIMATIONS  — vintage embroidery
+    ════════════════════════════════ */
+
+    /* sezioni con position relative per contenere aghi assoluti */
+    section, .brands-strip { position: relative; }
+
+    /* ── keyframes globali ── */
+    @keyframes needle-bob {
+      0%,100% { transform: translateY(-2px); }
+      40%,60% { transform: translateY(20px); }
+    }
+    @keyframes thread-flow {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -28; }
+    }
+    @keyframes gold-glow {
+      0%,100% { filter: drop-shadow(0 0 3px rgba(201,169,110,.4)); }
+      50%      { filter: drop-shadow(0 0 14px rgba(255,215,100,.9)); }
+    }
+    @keyframes shimmer-sweep {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -60; }
+    }
+    @keyframes tag-in {
+      from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    @keyframes float-needle {
+      0%,100% { transform: translateY(0) rotate(-8deg); }
+      50%      { transform: translateY(-10px) rotate(-5deg); }
+    }
+    @keyframes pulse-gold {
+      0%,100% { opacity: .45; }
+      50%      { opacity: .85; }
+    }
+
+    /* ── Ago decorativo — animazioni direzionali ── */
+    .deco-needle {
+      position: absolute; pointer-events: none; z-index: 2; width: 48px;
+      filter: drop-shadow(0 0 8px rgba(201,169,110,.5));
+    }
+
+    /* ogni posizione ha una propria animazione con rotazione diversa */
+    .deco-needle.pos-br {
+      bottom: 7%; right: 5%;
+      animation: float-br 4s ease-in-out infinite, gold-glow 4s ease-in-out infinite;
+    }
+    .deco-needle.pos-bl {
+      bottom: 7%; left: 5%;
+      animation: float-bl 5.5s ease-in-out infinite, gold-glow 5.5s ease-in-out infinite;
+    }
+    .deco-needle.pos-tr {
+      top: 9%; right: 5%;
+      animation: float-tr 3.8s ease-in-out infinite, gold-glow 3.8s ease-in-out infinite;
+    }
+    .deco-needle.pos-tl {
+      top: 9%; left: 5%;
+      animation: float-tl 4.8s ease-in-out infinite, gold-glow 4.8s ease-in-out infinite;
+    }
+    @keyframes float-br {
+      0%    { transform: rotate(-8deg)  translate(0px,   0px); }
+      25%   { transform: rotate(6deg)   translate(5px,  -12px); }
+      50%   { transform: rotate(-14deg) translate(-3px,  18px); }
+      75%   { transform: rotate(10deg)  translate(7px,   6px); }
+      100%  { transform: rotate(-8deg)  translate(0px,   0px); }
+    }
+    @keyframes float-bl {
+      0%    { transform: rotate(8deg)   translate(0px,  0px); }
+      30%   { transform: rotate(-12deg) translate(-5px, 14px); }
+      55%   { transform: rotate(16deg)  translate(4px, -8px); }
+      80%   { transform: rotate(-6deg)  translate(-7px, 10px); }
+      100%  { transform: rotate(8deg)   translate(0px,  0px); }
+    }
+    @keyframes float-tr {
+      0%    { transform: rotate(12deg)  translate(0px,   0px); }
+      25%   { transform: rotate(-8deg)  translate(-4px, -10px); }
+      50%   { transform: rotate(18deg)  translate(6px,   14px); }
+      75%   { transform: rotate(-4deg)  translate(3px,  -6px); }
+      100%  { transform: rotate(12deg)  translate(0px,   0px); }
+    }
+    @keyframes float-tl {
+      0%    { transform: rotate(-12deg) translate(0px,  0px); }
+      35%   { transform: rotate(8deg)   translate(5px, -12px); }
+      65%   { transform: rotate(-18deg) translate(-3px, 10px); }
+      100%  { transform: rotate(-12deg) translate(0px,  0px); }
+    }
+
+    /* ── "Fatto a mano" tag centrato ── */
+    .craft-tag {
+      position: absolute; bottom: 10%; left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      display: flex; align-items: center; gap: .8rem;
+      white-space: nowrap; pointer-events: none;
+      opacity: 0; animation: tag-in 1s ease forwards 1.6s;
+    }
+    .craft-tag-line {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,169,110,.6), transparent);
+    }
+    .craft-tag span {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: .82rem; letter-spacing: 2px;
+      color: rgba(201,169,110,.85);
+    }
+
+    /* ── Cucitura (stitch divider) — animazione JS-driven ── */
+    .stitch-divider {
+      width: 100%; line-height: 0; padding: 22px 0; display: block; overflow: hidden;
+    }
+    .stitch-divider svg { width: 100%; display: block; overflow: visible; }
+
+    /* lo stato di default — JS controlla via style inline */
+    .stitch-line  { stroke-dasharray: 2000; stroke-dashoffset: 2000; }
+    .stitch-shine { opacity: 0; stroke-dasharray: 8 52; }
+
+    /* forbici — fill-box: il pivot si sposta con l'elemento (essenziale per forbici mobili) */
+    .stitch-scissors { opacity: 0.8; }
+    /* lama superiore: pivot a 55% 77% della fill-box */
+    .sc-blade-up {
+      transform-box: fill-box; transform-origin: 55% 77%;
+      animation: sc-idle-up 2.5s ease-in-out infinite;
+    }
+    /* lama inferiore: pivot a 55% 23% della fill-box */
+    .sc-blade-dn {
+      transform-box: fill-box; transform-origin: 55% 23%;
+      animation: sc-idle-dn 2.5s ease-in-out infinite;
+    }
+    /* forbici slim (divider 4) */
+    .stitch-divider[data-slim] .sc-blade-up { transform-origin: 58% 73%; }
+    .stitch-divider[data-slim] .sc-blade-dn { transform-origin: 58% 25%; }
+    @keyframes sc-idle-up {
+      0%,100% { transform: rotate(0deg); }
+      50%      { transform: rotate(-16deg); }
+    }
+    @keyframes sc-idle-dn {
+      0%,100% { transform: rotate(0deg); }
+      50%      { transform: rotate(16deg); }
+    }
+    /* forbici che tagliano */
+    .stitch-scissors.cutting .sc-blade-up {
+      animation: sc-cut-up 0.22s ease-in-out 6;
+    }
+    .stitch-scissors.cutting .sc-blade-dn {
+      animation: sc-cut-dn 0.22s ease-in-out 6;
+    }
+    @keyframes sc-cut-up {
+      0%,100% { transform: rotate(0deg); }
+      50%      { transform: rotate(-30deg); }
+    }
+    @keyframes sc-cut-dn {
+      0%,100% { transform: rotate(0deg); }
+      50%      { transform: rotate(30deg); }
+    }
+
+    /* ── Punto a croce — pre-footer ── */
+    .stitch-unravel {
+      width: 100%; line-height: 0; padding: 28px 0;
+      background: var(--dark); overflow: visible; display: block;
+    }
+    .stitch-unravel svg { width: 100%; display: block; overflow: visible; }
+    @keyframes xrav-draw { to { stroke-dashoffset: 0; } }
+    .xrav-draw  { animation: xrav-draw 0.7s ease-out forwards; }
+    .xrav-thread{ animation: xrav-draw 1.6s ease-out forwards 1.4s; }
+
+    /* ── Glitter spot ── */
+    .glitter {
+      position: absolute; pointer-events: none; z-index: 2;
+      animation: pulse-gold 2.5s ease-in-out infinite;
+    }
+
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="#" class="logo">LG <span>Shoes</span></a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#chi-siamo">Chi Siamo</a></li>
-                <li><a href="#mission">Mission</a></li>
-                <li><a href="#servizi">Servizi</a></li>
-                <li><a href="#scarpe">Scarpe Donna</a></li>
-                <li><a href="#contatti">Contatti</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <p class="hero-subtitle">Calzature Artigianali Italiane</p>
-            <h1>Eleganza e Comfort in Ogni Passo</h1>
-            <p>Scopri la nostra collezione di scarpe da donna, frutto di artigianalità, design e innovazione. Qualità che dura nel tempo.</p>
-            <div>
-                <a href="#scarpe" class="btn">Scopri la Collezione</a>
-                <a href="#chi-siamo" class="btn btn-outline">La Nostra Storia</a>
-            </div>
+<!-- ══════════════ FULL-SCREEN MOBILE MENU ══════════════ -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu di navigazione">
+  <button class="mobile-menu-close" id="mobileClose" aria-label="Chiudi menu">&#x2715;</button>
+  <div class="mobile-menu-logo">
+    <span class="m-brand">L.G. Shoes</span>
+    <span class="m-company">Tomaificio</span>
+  </div>
+  <ul class="mobile-menu-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#chi-siamo">Chi Siamo</a></li>
+    <li><a href="#produzione">Produzione</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <div class="mobile-sep"></div>
+  <div class="mobile-menu-footer">
+    <a href="tel:+393398344344">339 834 4344</a>
+    <a href="mailto:enza.carrino.76@gmail.com">enza.carrino.76@gmail.com</a>
+  </div>
+</div>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <span class="brand">L.G. Shoes</span>
+      <span class="company">Tomaificio</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#chi-siamo">Chi Siamo</a></li>
+      <li><a href="#produzione">Produzione</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+
+    <button class="burger" id="burger" aria-label="Apri menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="home">
+  <div class="hero-content">
+    <div class="hero-badge">Tomaificio · Mugnano di Napoli · Dal 1990</div>
+    <h1 class="hero-title">
+      L'arte italiana<br>della <span>tomaia</span><br>di lusso
+    </h1>
+    <p class="hero-sub">
+      Artigianalità, design e innovazione al servizio dei più grandi marchi del lusso mondiale.
+    </p>
+    <a href="#chi-siamo" class="hero-cta">Scopri la nostra storia</a>
+  </div>
+  <div class="scroll-hint">Scorri</div>
+
+  <!-- Ago destra (in alto, orientamento inclinato) -->
+  <div class="deco-needle pos-tr" style="top:18%;right:6%;width:42px;" aria-hidden="true">
+    <svg viewBox="0 0 48 200" fill="none">
+      <g class="n-body" style="transform-origin:24px 44px;transform:rotate(18deg)">
+        <ellipse cx="24" cy="44" rx="5"   ry="38" fill="#c9a96e" opacity=".7"/>
+        <ellipse cx="24" cy="20" rx="2.8" ry="5"   fill="none" stroke="#e8d5a3" stroke-width="2"/>
+        <path d="M19 80 Q24 96 29 80" fill="#c9a96e" opacity=".75"/>
+      </g>
+      <path d="M24 20 Q38 55 24 90 Q10 122 30 155 Q42 178 24 200"
+        stroke="#c9a96e" stroke-width="1.3" fill="none"
+        stroke-dasharray="6 5" opacity=".45"/>
+    </svg>
+  </div>
+
+  <!-- Ago sinistra in basso -->
+  <div class="deco-needle pos-bl" style="animation-delay:1.4s" aria-hidden="true">
+    <svg viewBox="0 0 48 200" fill="none">
+      <g class="n-body">
+        <ellipse cx="24" cy="44" rx="5.5" ry="40" fill="#c9a96e" opacity=".6"/>
+        <ellipse cx="24" cy="20" rx="3"   ry="5.5" fill="none" stroke="#e8d5a3" stroke-width="2.2"/>
+        <path d="M19 82 Q24 100 29 82" fill="#c9a96e" opacity=".65"/>
+      </g>
+      <path d="M24 20 Q10 55 24 90 Q38 122 18 155 Q6 178 24 200"
+        stroke="#c9a96e" stroke-width="1.3" fill="none"
+        stroke-dasharray="6 5" opacity=".4"/>
+    </svg>
+  </div>
+
+  <!-- Stelle dorate (glitter) -->
+  <svg class="glitter" style="top:22%;left:9%;width:18px;" aria-hidden="true" viewBox="0 0 20 20">
+    <path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5Z" fill="#c9a96e" opacity=".65"/>
+  </svg>
+  <svg class="glitter" style="top:38%;right:9%;width:12px;animation-delay:.9s" aria-hidden="true" viewBox="0 0 20 20">
+    <path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5Z" fill="#e8d5a3" opacity=".55"/>
+  </svg>
+  <svg class="glitter" style="bottom:28%;left:22%;width:10px;animation-delay:1.7s" aria-hidden="true" viewBox="0 0 20 20">
+    <path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5Z" fill="#c9a96e" opacity=".5"/>
+  </svg>
+
+  <!-- Tag centrato -->
+  <div class="craft-tag" aria-hidden="true">
+    <div class="craft-tag-line"></div>
+    <span>fatto a mano · made in Italy</span>
+    <div class="craft-tag-line"></div>
+  </div>
+</section>
+
+<!-- ── CUCITURA 1 ── -->
+<div class="stitch-divider" data-stitch aria-hidden="true" style="background:var(--light);">
+  <svg viewBox="0 0 1450 40" preserveAspectRatio="none">
+    <!-- ago -->
+    <g class="stitch-needle">
+      <ellipse cx="0" cy="20" rx="6"   ry="16" fill="#c9a96e" opacity=".85"/>
+      <ellipse cx="0" cy="11" rx="3"   ry="4.5" fill="none" stroke="#ffe48a" stroke-width="2" opacity=".95"/>
+      <path d="M-6 34 Q0 44 6 34" fill="#c9a96e" opacity=".85"/>
+    </g>
+    <!-- linea principale cucita -->
+    <line class="stitch-line" x1="0" y1="20" x2="1450" y2="20"
+      stroke="#c9a96e" stroke-width="2.5" stroke-dasharray="14 8" opacity=".75"/>
+    <!-- shimmer layer dorato che scorre -->
+    <line class="stitch-shine" x1="0" y1="20" x2="1450" y2="20"
+      stroke="#ffe48a" stroke-width="2.5" opacity=".0"/>
+    <!-- forbici -->
+    <!-- forbici: maniglie a sinistra, lame puntate a destra (direzione di marcia) -->
+    <g class="stitch-scissors" transform="translate(0,6)">
+      <circle cx="25" cy="15" r="2" fill="#c9a96e" opacity=".9"/>
+      <g class="sc-blade-up">
+        <circle cx="6"  cy="5"  r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
+        <line x1="12" y1="10" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="25" y1="15" x2="46" y2="20" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      </g>
+      <g class="sc-blade-dn">
+        <circle cx="6"  cy="25" r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
+        <line x1="12" y1="20" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="25" y1="15" x2="46" y2="10" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- ══════════════ CHI SIAMO ══════════════ -->
+<section id="chi-siamo" style="overflow:hidden;">
+  <div class="container">
+    <div class="chi-grid">
+      <!-- colonna sinistra -->
+      <div class="chi-text">
+        <p class="section-label">Il Nostro Tomaificio</p>
+        <h2 class="section-title">Passione familiare,<br>qualità mondiale</h2>
+        <div class="section-line"></div>
+        <p>
+          Il <strong>Tomaificio L.G. SHOES SRL</strong> è una realtà d'eccellenza del distretto calzaturiero campano, specializzata nella fabbricazione di <strong>tomaie per calzature femminili di alta gamma</strong>. Una tomaia è la parte superiore della scarpa — il cuore estetico e strutturale di ogni calzatura — e la nostra expertise esclusiva in questo campo ci rende un fornitore d'élite per i brand del lusso internazionale.
+        </p>
+        <p>
+          La nostra è un'azienda a carattere familiare, guidata dalla <strong>Sig.ra Carrino Vincenza</strong>, con decenni di esperienza nella lavorazione di pellami pregiati: dalla pelle liscia al camoscio, dalla vernice al nabuk, fino ai materiali tecnici più innovativi. Ogni commessa è seguita direttamente dalla direzione, con un controllo totale su ogni singola fase produttiva.
+        </p>
+        <p>
+          Lavoriamo esclusivamente su commessa <strong>B2B</strong>, affiancando calzaturifici, maison di moda e brand del lusso nella realizzazione di tomaie donna su misura, rispettando i pattern e le specifiche tecniche più esigenti del settore.
+        </p>
+        <blockquote class="highlight">
+          «È grazie alla profonda esperienza della Sig.ra Carrino Vincenza che la nostra struttura ha raggiunto gli attuali standard qualitativi, diventando partner strategico per i più prestigiosi marchi mondiali del lusso.»
+        </blockquote>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">✦</div>
+            <h4>Artigianalità</h4>
+            <p>Ogni tomaia lavorata con cura certosina da mani esperte, nel rispetto della tradizione italiana.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">◈</div>
+            <h4>Design</h4>
+            <p>Forme eleganti e linee raffinate che esaltano la bellezza di ogni calzatura femminile.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">⬡</div>
+            <h4>Innovazione</h4>
+            <p>Macchinari di ultima generazione per lavorazioni di precisione assoluta.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">◉</div>
+            <h4>Qualità</h4>
+            <p>Controllo qualità puntuale su ogni tomaia per garantire l'eccellenza del prodotto.</p>
+          </div>
         </div>
-        <div class="scroll-indicator"></div>
-    </section>
+      </div>
 
-    <!-- About Section -->
-    <section class="about" id="chi-siamo">
-        <div class="container">
-            <div class="section-header">
-                <h2>Il Nostro Calzaturificio</h2>
-                <div class="divider"></div>
-                <p>Tradizione artigianale e passione per l'eccellenza dal cuore della Campania</p>
-            </div>
-            <div class="about-grid">
-                <div class="about-image">
-                    <div class="about-image-placeholder"></div>
-                </div>
-                <div class="about-content">
-                    <h3>Chi Siamo</h3>
-                    <p>LG Shoes è un calzaturificio specializzato nella produzione di scarpe di alta qualità, combinando artigianalità, design e innovazione. L'azienda realizza calzature pensate per comfort, durata e stile, seguendo ogni fase della produzione con attenzione ai dettagli e ai materiali.</p>
-                    <p>Grazie all'esperienza del team e all'utilizzo di tecniche moderne, LG Shoes offre prodotti che uniscono eleganza e funzionalità, soddisfacendo le esigenze di clienti attenti alla qualità e alla cura estetica delle proprie calzature.</p>
-                    <div class="values">
-                        <div class="value-item">
-                            <div class="value-icon">✨</div>
-                            <h4>Qualità</h4>
-                            <p>Materiali selezionati</p>
-                        </div>
-                        <div class="value-item">
-                            <div class="value-icon">❤️</div>
-                            <h4>Comfort</h4>
-                            <p>Per tutta la giornata</p>
-                        </div>
-                        <div class="value-item">
-                            <div class="value-icon">♾️</div>
-                            <h4>Durata</h4>
-                            <p>Nel tempo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- colonna destra -->
+      <div class="chi-right">
+        <div class="info-panel">
+          <h3>Certificazioni & Audit</h3>
+          <p>
+            A garanzia della nostra affidabilità e trasparenza, il Tomaificio L.G. SHOES SRL ha già sostenuto con successo gli <strong>Audit dei gruppi LVMH e Kering</strong>, risultando pienamente conforme agli standard internazionali richiesti dai leader del settore.
+          </p>
+          <div class="audit-badges">
+            <div class="audit-badge">✓ Audit LVMH</div>
+            <div class="audit-badge">✓ Audit Kering</div>
+          </div>
         </div>
-    </section>
 
-    <!-- Mission Section -->
-    <section class="mission" id="mission">
-        <div class="container">
-            <div class="section-header">
-                <h2>La Nostra Mission</h2>
-                <div class="divider"></div>
-                <p>Il nostro impegno per l'eccellenza calzaturiera</p>
-            </div>
-            <div class="mission-content">
-                <p>La mission di LG Shoes è creare calzature di alta qualità che uniscano stile, comfort e durata nel tempo. L'azienda punta a valorizzare l'artigianalità italiana, selezionando materiali pregiati e curando ogni dettaglio della produzione.</p>
-                <p style="margin-top: 1.5rem;">LG Shoes si impegna a soddisfare le esigenze dei clienti con prodotti eleganti, funzionali e innovativi, garantendo attenzione alla qualità, all'estetica e alla sostenibilità, con l'obiettivo di diventare un punto di riferimento nel settore calzaturiero.</p>
-            </div>
-            <div class="mission-highlights">
-                <div class="mission-item">
-                    <i class="fas fa-gem"></i>
-                    <h4>Qualità</h4>
-                    <p>Materiali pregiati selezionati</p>
-                </div>
-                <div class="mission-item">
-                    <i class="fas fa-palette"></i>
-                    <h4>Estetica</h4>
-                    <p>Design elegante e raffinato</p>
-                </div>
-                <div class="mission-item">
-                    <i class="fas fa-lightbulb"></i>
-                    <h4>Innovazione</h4>
-                    <p>Tecniche moderne e creative</p>
-                </div>
-                <div class="mission-item">
-                    <i class="fas fa-leaf"></i>
-                    <h4>Sostenibilità</h4>
-                    <p>Rispetto per l'ambiente</p>
-                </div>
-            </div>
+        <div class="info-panel">
+          <h3>Perché sceglierci</h3>
+          <p>
+            Ogni commessa viene trattata con la massima professionalità e il rigoroso rispetto dei tempi di consegna. La nostra struttura familiare ci permette di essere flessibili, reattivi e totalmente dedicati alle esigenze del cliente, garantendo al tempo stesso gli standard internazionali richiesti dai leader del settore moda.
+          </p>
+          <p style="margin-top:.8rem;">
+            Realizziamo tomaie su qualsiasi pellame: pelle liscia, camoscio, vernice, nabuk, materiali tecnici e tessuti pregiati. Dalla campionatura alla produzione in serie.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Services Section -->
-    <section class="services" id="servizi">
-        <div class="container">
-            <div class="section-header">
-                <h2>I Nostri Servizi</h2>
-                <div class="divider"></div>
-                <p>Professionalità e competenza in ogni fase della produzione</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-pencil-ruler"></i>
-                    </div>
-                    <h3>Progettazione Scarpe</h3>
-                    <p>Creiamo modelli unici di calzature combinando design innovativo, ergonomia e materiali di qualità.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hammer"></i>
-                    </div>
-                    <h3>Realizzazione Scarpe</h3>
-                    <p>Produciamo scarpe con cura artigianale, seguendo ogni fase della lavorazione per garantire comfort e resistenza.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3>Rifinitura Scarpe</h3>
-                    <p>Applichiamo rifiniture precise e controlli di qualità per assicurare eleganza, dettagli perfetti e durata nel tempo.</p>
-                </div>
-            </div>
+<!-- ── CUCITURA 2 ── -->
+<div class="stitch-divider" data-stitch aria-hidden="true" style="background:#0e0e0e;">
+  <svg viewBox="0 0 1450 40" preserveAspectRatio="none">
+    <g class="stitch-needle">
+      <ellipse cx="0" cy="20" rx="6"   ry="16" fill="#c9a96e" opacity=".85"/>
+      <ellipse cx="0" cy="11" rx="3"   ry="4.5" fill="none" stroke="#ffe48a" stroke-width="2" opacity=".95"/>
+      <path d="M-6 34 Q0 44 6 34" fill="#c9a96e" opacity=".85"/>
+    </g>
+    <line class="stitch-line" x1="0" y1="20" x2="1450" y2="20"
+      stroke="#c9a96e" stroke-width="2.5" stroke-dasharray="14 8" opacity=".75"/>
+    <line class="stitch-shine" x1="0" y1="20" x2="1450" y2="20"
+      stroke="#ffe48a" stroke-width="2.5" opacity=".0"/>
+    <!-- forbici: maniglie a sinistra, lame puntate a destra (direzione di marcia) -->
+    <g class="stitch-scissors" transform="translate(0,6)">
+      <circle cx="25" cy="15" r="2" fill="#c9a96e" opacity=".9"/>
+      <g class="sc-blade-up">
+        <circle cx="6"  cy="5"  r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
+        <line x1="12" y1="10" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="25" y1="15" x2="46" y2="20" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      </g>
+      <g class="sc-blade-dn">
+        <circle cx="6"  cy="25" r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
+        <line x1="12" y1="20" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="25" y1="15" x2="46" y2="10" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- ══════════════ BRANDS STRIP ══════════════ -->
+<div class="brands-strip">
+  <p class="brands-strip-label">Partner Strategici – Marchi del Lusso Mondiale</p>
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <!-- copia 1 -->
+      <div class="ticker-item"><span class="t-name">Yves Saint Laurent</span><span class="ticker-sep">✦</span></div>
+      <div class="ticker-item"><span class="t-name">Christian Louboutin</span><span class="ticker-sep">✦</span></div>
+      <div class="ticker-item"><span class="t-name">Versace</span><span class="ticker-sep">✦</span></div>
+      <div class="ticker-item"><span class="t-name">Prada</span><span class="ticker-sep">✦</span></div>
+      <div class="ticker-item"><span class="t-name">Louis Vuitton</span><span class="ticker-sep">✦</span></div>
+      <!-- copia 2 – seamless loop -->
+      <div class="ticker-item"><span class="t-name">Yves Saint Laurent</span><span class="ticker-sep">✦</span></div>
+      <div class="ticker-item"><span class="t-name">Christian Louboutin</span><span class="ticker-sep">✦</span></div>
+      <div class="ticker-item"><span class="t-name">Versace</span><span class="ticker-sep">✦</span></div>
+      <div class="ticker-item"><span class="t-name">Prada</span><span class="ticker-sep">✦</span></div>
+      <div class="ticker-item"><span class="t-name">Louis Vuitton</span><span class="ticker-sep">✦</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CUCITURA 3 ── -->
+<div class="stitch-divider" data-stitch aria-hidden="true" style="background:var(--dark);">
+  <svg viewBox="0 0 1450 40" preserveAspectRatio="none">
+    <g class="stitch-needle">
+      <ellipse cx="0" cy="20" rx="6"   ry="16" fill="#c9a96e" opacity=".85"/>
+      <ellipse cx="0" cy="11" rx="3"   ry="4.5" fill="none" stroke="#ffe48a" stroke-width="2" opacity=".95"/>
+      <path d="M-6 34 Q0 44 6 34" fill="#c9a96e" opacity=".85"/>
+    </g>
+    <line class="stitch-line" x1="0" y1="20" x2="1450" y2="20"
+      stroke="#c9a96e" stroke-width="2.5" stroke-dasharray="14 8" opacity=".75"/>
+    <line class="stitch-shine" x1="0" y1="20" x2="1450" y2="20"
+      stroke="#ffe48a" stroke-width="2.5" opacity=".0"/>
+    <!-- forbici: maniglie a sinistra, lame puntate a destra (direzione di marcia) -->
+    <g class="stitch-scissors" transform="translate(0,6)">
+      <circle cx="25" cy="15" r="2" fill="#c9a96e" opacity=".9"/>
+      <g class="sc-blade-up">
+        <circle cx="6"  cy="5"  r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
+        <line x1="12" y1="10" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="25" y1="15" x2="46" y2="20" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      </g>
+      <g class="sc-blade-dn">
+        <circle cx="6"  cy="25" r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
+        <line x1="12" y1="20" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="25" y1="15" x2="46" y2="10" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- ══════════════ PRODUZIONE ══════════════ -->
+<section id="produzione">
+  <div class="container">
+    <p class="section-label">Il Processo Produttivo</p>
+    <h2 class="section-title" style="color:var(--white)">Ogni fase,<br>una garanzia di eccellenza</h2>
+    <div class="section-line"></div>
+    <p class="prod-intro">
+      Il nostro processo produttivo è supportato da macchinari di ultima generazione e garantisce la massima qualità e precisione in ogni fase lavorativa, dalla materia prima alla tomaia finita.
+    </p>
+    <div class="prod-grid">
+      <div class="prod-step">
+        <div class="prod-num">01</div>
+        <h4>Taglio</h4>
+        <p>Computerizzato, a trancia e a mano su ogni tipo di materiale, per la massima precisione e resa.</p>
+      </div>
+      <div class="prod-step">
+        <div class="prod-num">02</div>
+        <h4>Scarnitura e Sbassatura</h4>
+        <p>Lavorazioni curate nel minimo dettaglio per spessori impeccabili e una vestibilità perfetta.</p>
+      </div>
+      <div class="prod-step">
+        <div class="prod-num">03</div>
+        <h4>Cambratura</h4>
+        <p>Modellazione su qualsiasi pellame, dal camoscio alla vernice, con risultati di assoluta qualità.</p>
+      </div>
+      <div class="prod-step">
+        <div class="prod-num">04</div>
+        <h4>Timbratura</h4>
+        <p>Marcatura di precisione sia a caldo che a freddo, per un'identificazione impeccabile del prodotto.</p>
+      </div>
+      <div class="prod-step">
+        <div class="prod-num">05</div>
+        <h4>Incollaggio e Accoppiatura</h4>
+        <p>Applicazione accurata di collanti (anche all'acqua) per la perfetta adesione di rinforzi e componenti.</p>
+      </div>
+      <div class="prod-step">
+        <div class="prod-num">06</div>
+        <h4>Giunteria e Cucitura</h4>
+        <p>Assemblaggio di alta precisione affidato a personale altamente specializzato e formato.</p>
+      </div>
+      <div class="prod-step">
+        <div class="prod-num">07</div>
+        <h4>Lissatura</h4>
+        <p>Rifinitura impeccabile del bordo a taglio vivo per un risultato esteticamente perfetto.</p>
+      </div>
+      <div class="prod-step">
+        <div class="prod-num">08</div>
+        <h4>Controllo Qualità</h4>
+        <p>Verifica puntuale di ogni singola tomaia per garantire l'eccellenza assoluta del prodotto finito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CUCITURA 4 ── -->
+<div class="stitch-divider" data-stitch data-slim aria-hidden="true" style="background:var(--light);">
+  <svg viewBox="0 0 1450 28" preserveAspectRatio="none">
+    <g class="stitch-needle">
+      <ellipse cx="-10" cy="14" rx="4" ry="10" fill="#c9a96e" opacity=".6"/>
+      <ellipse cx="-10" cy="9"  rx="2" ry="3.5" fill="none" stroke="#c9a96e" stroke-width="1.5" opacity=".8"/>
+    </g>
+    <line class="stitch-line" x1="0" y1="14" x2="1450" y2="14"
+      stroke="#c9a96e" stroke-width="1.2" stroke-dasharray="12 7" opacity=".35"/>
+    <!-- forbici ridotte: maniglie a sinistra, lame a destra -->
+    <g class="stitch-scissors" transform="translate(0,4)">
+      <circle cx="18" cy="10" r="1.5" fill="#c9a96e" opacity=".9"/>
+      <g class="sc-blade-up">
+        <circle cx="4"  cy="4"  r="5" fill="none" stroke="#c9a96e" stroke-width="1.4"/>
+        <line x1="8"  y1="7"  x2="18" y2="10" stroke="#c9a96e" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="18" y1="10" x2="34" y2="14" stroke="#c9a96e" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+      <g class="sc-blade-dn">
+        <circle cx="4"  cy="17" r="5" fill="none" stroke="#c9a96e" stroke-width="1.4"/>
+        <line x1="8"  y1="14" x2="18" y2="10" stroke="#c9a96e" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="18" y1="10" x2="34" y2="6"  stroke="#c9a96e" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- ══════════════ CONTATTI ══════════════ -->
+<section id="contatti">
+  <div class="container">
+    <p class="section-label">Lavoriamo Insieme</p>
+    <h2 class="section-title">Contatti</h2>
+    <div class="section-line"></div>
+
+    <div class="contact-grid">
+      <!-- Info -->
+      <div class="contact-info">
+        <p>
+          Siamo pronti a mettere la nostra competenza e le nostre tecnologie a disposizione della vostra produzione. Contattateci per fissare un incontro conoscitivo o per concordare la realizzazione di una campionatura di prova.
+        </p>
+
+        <div class="info-block">
+          <h4>Sede Legale e Operativa</h4>
+          <div class="info-row">
+            <span class="icon">🏠</span>
+            <span>Via Cristoforo Colombo, 15 – 80018 Mugnano di Napoli (NA)</span>
+          </div>
         </div>
-    </section>
 
-    <!-- Products Section -->
-    <section class="products" id="scarpe">
-        <div class="container">
-            <div class="section-header">
-                <h2>Collezione Donna</h2>
-                <div class="divider"></div>
-                <p>Scarpe eleganti e versatili per ogni momento della giornata</p>
-            </div>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-badge">Eleganza</span>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-category">Décolleté</p>
-                        <h3>Décolleté Beige</h3>
-                        <p>Eleganza senza tempo con il comfort della vera artigianalità italiana. Perfette per ogni occasione speciale.</p>
-                        <div class="product-features">
-                            <span class="feature-tag">Pelle premium</span>
-                            <span class="feature-tag">Tacco medio</span>
-                            <span class="feature-tag">Comfort</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-badge">Classico</span>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-category">Mocassini</p>
-                        <h3>Mocassini Neri</h3>
-                        <p>Il classico intramontabile in una veste moderna e raffinata. Versatilità e stile per il tuo quotidiano.</p>
-                        <div class="product-features">
-                            <span class="feature-tag">Vera pelle</span>
-                            <span class="feature-tag">Slip-on</span>
-                            <span class="feature-tag">Elegante</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-badge">Trendy</span>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-category">Stivaletti</p>
-                        <h3>Stivaletti Marroni</h3>
-                        <p>Il must-have della stagione per un look audace e contemporaneo. Comfort e stile in un unico accessorio.</p>
-                        <div class="product-features">
-                            <span class="feature-tag">Pelle scamosciata</span>
-                            <span class="feature-tag">Versatile</span>
-                            <span class="feature-tag">Moderno</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="info-block">
+          <h4>Carrino Vincenza – Amministratore</h4>
+          <div class="info-row">
+            <span class="icon">📱</span>
+            <span><a href="tel:+393398344344">339 834 4344</a></span>
+          </div>
+          <div class="info-row">
+            <span class="icon">✉️</span>
+            <span><a href="mailto:enza.carrino.76@gmail.com">enza.carrino.76@gmail.com</a></span>
+          </div>
+          <div class="info-row">
+            <span class="icon">📧</span>
+            <span><a href="mailto:carrinovincenza@pec.it">carrinovincenza@pec.it</a> <em style="font-size:.72rem;color:#bbb;">(PEC)</em></span>
+          </div>
         </div>
-    </section>
 
-    <!-- Social Section -->
-    <section class="social-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Seguici sui Social</h2>
-                <div class="divider"></div>
-                <p>Rimani aggiornato sulle novità e le nostre creazioni</p>
-            </div>
-            <div class="social-grid">
-                <a href="#" class="social-item" target="_blank">
-                    <div class="social-icon instagram">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <span>Instagram</span>
-                </a>
-                <a href="#" class="social-item" target="_blank">
-                    <div class="social-icon facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <span>Facebook</span>
-                </a>
-                <a href="#" class="social-item" target="_blank">
-                    <div class="social-icon linkedin">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="#" class="social-item" target="_blank">
-                    <div class="social-icon youtube">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <span>YouTube</span>
-                </a>
-            </div>
+        <div class="info-block">
+          <h4>Ufficio / Produzione – Luigi</h4>
+          <div class="info-row">
+            <span class="icon">📞</span>
+            <span><a href="tel:+390815558545">081 555 8545</a></span>
+          </div>
+          <div class="info-row">
+            <span class="icon">📱</span>
+            <span><a href="tel:+393427344016">342 734 4016</a></span>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contatti">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contattaci</h2>
-                <div class="divider"></div>
-                <p>Siamo qui per te. Vieni a trovarci o contattaci per informazioni</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>LG Shoes</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h4>Indirizzo</h4>
-                            <p>Via Cristoforo Colombo, 15<br>80018 Mugnano di Napoli (NA)</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
-                            <h4>Telefono</h4>
-                            <p><a href="tel:0815558545">081 555 8545</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <h4>Cellulare</h4>
-                            <p><a href="tel:3427344016">342 734 4016</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:enza.carrino.76@gmail.com">enza.carrino.76@gmail.com</a></p>
-                        </div>
-                    </div>
-                    <a href="https://wa.me/393427344016" class="whatsapp-btn" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        Contattaci su WhatsApp
-                    </a>
-                </div>
-                <div class="map-container">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3016.417927551726!2d14.209999!3d40.909999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b5f8b5f8b5f8b%3A0x5f8b5f8b5f8b5f8b!2sVia%20Cristoforo%20Colombo%2C%2015%2C%2080018%20Mugnano%20di%20Napoli%20NA!5e0!3m2!1sit!2sit!4v1234567890"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
+        <div class="info-block">
+          <h4>PEC Aziendale</h4>
+          <div class="info-row">
+            <span class="icon">📧</span>
+            <span><a href="mailto:lgshoes.srl@pec.it">lgshoes.srl@pec.it</a></span>
+          </div>
+          <div class="info-row">
+            <span class="icon">🏛️</span>
+            <span>P.IVA: 09049831218</span>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">LG <span>Shoes</span></div>
-            <p>Calzature Artigianali Italiane - Made with ❤️ in Campania</p>
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#chi-siamo">Chi Siamo</a>
-                <a href="#mission">Mission</a>
-                <a href="#servizi">Servizi</a>
-                <a href="#scarpe">Scarpe Donna</a>
-                <a href="#contatti">Contatti</a>
-            </div>
-            <div class="footer-social">
-                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://wa.me/393427344016" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 LG Shoes. Tutti i diritti riservati.</p>
-            </div>
+        <div class="social-block">
+          <h4>Seguici sui Social</h4>
+          <div class="social-buttons">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="social-btn instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Instagram
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="social-btn facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="social-btn linkedin">
+              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://wa.me/393398344344" target="_blank" rel="noopener" class="social-btn whatsapp">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="social-btn tiktok">
+              <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="currentColor"/></svg>
+              TikTok
+            </a>
+          </div>
         </div>
-    </footer>
 
-    <script>
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        <div class="map-wrapper">
+          <iframe
+            src="https://maps.google.com/maps?q=Via+Cristoforo+Colombo+15+80018+Mugnano+di+Napoli+NA+Italia&output=embed&hl=it&z=16"
+            width="100%" height="260"
+            style="border:0; border-radius:6px; display:block;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Sede Tomaificio L.G. Shoes SRL">
+          </iframe>
+        </div>
+      </div>
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
-            } else {
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            }
-        });
+      <!-- Form -->
+      <div class="contact-form">
+        <h3>Richiedi informazioni</h3>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome">Nome *</label>
+              <input type="text" id="nome" name="nome" placeholder="Mario" required />
+            </div>
+            <div class="form-group">
+              <label for="cognome">Cognome *</label>
+              <input type="text" id="cognome" name="cognome" placeholder="Rossi" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="azienda">Azienda</label>
+            <input type="text" id="azienda" name="azienda" placeholder="Nome azienda" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="mario.rossi@azienda.it" required />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+39 000 000 0000" />
+          </div>
+          <div class="form-group">
+            <label for="oggetto">Oggetto *</label>
+            <select id="oggetto" name="oggetto" required>
+              <option value="">Seleziona...</option>
+              <option value="collaborazione">Proposta di collaborazione</option>
+              <option value="campionatura">Richiesta campionatura</option>
+              <option value="preventivo">Richiesta preventivo</option>
+              <option value="info">Informazioni generali</option>
+              <option value="altro">Altro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="messaggio">Messaggio *</label>
+            <textarea id="messaggio" name="messaggio" placeholder="Descrivete la vostra richiesta..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Invia Richiesta</button>
+          <p class="form-note">* Campi obbligatori. I dati saranno trattati in conformità al GDPR.</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          Grazie per averci contattato!<br>
+          <span style="font-size:.85rem;font-family:var(--font-sans);color:var(--mid);font-style:normal;">Vi risponderemo il prima possibile.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if (mobileMenu) {
-            mobileMenu.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-            });
-        }
+<!-- ══════════════ PUNTO A CROCE PRE-FOOTER ══════════════ -->
+<div class="stitch-unravel" aria-hidden="true">
+  <svg viewBox="0 0 1450 64" preserveAspectRatio="none" overflow="visible">
+    <defs>
+      <!-- tile punto a croce 36×36 — più grande e visibile -->
+      <pattern id="xstitch" x="0" y="8" width="36" height="36" patternUnits="userSpaceOnUse">
+        <line x1="5"  y1="5"  x2="27" y2="27" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
+        <line x1="27" y1="5"  x2="5"  y2="27" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
+      </pattern>
+    </defs>
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            });
-        });
-    </script>
+    <!-- campo di croci statico — zona sinistra (termina netto a x=810) -->
+    <rect x="0" y="8" width="810" height="48" fill="url(#xstitch)" opacity=".72"/>
+
+    <!-- ── zona di scucitura: croci che appaiono da SX a DX ── -->
+    <!-- X1 (più opaca, prima ad apparire) -->
+    <line class="xrav-draw" style="animation-delay:0s"
+      x1="820" y1="11" x2="846" y2="53" stroke="#c9a96e" stroke-width="2.1" stroke-linecap="round"
+      stroke-dasharray="49" stroke-dashoffset="49"/>
+    <line class="xrav-draw" style="animation-delay:.2s"
+      x1="846" y1="11" x2="820" y2="53" stroke="#c9a96e" stroke-width="2.1" stroke-linecap="round"
+      stroke-dasharray="49" stroke-dashoffset="49"/>
+
+    <!-- X2 -->
+    <line class="xrav-draw" style="animation-delay:.48s"
+      x1="858" y1="11" x2="884" y2="53" stroke="#c9a96e" stroke-width="1.9" stroke-linecap="round"
+      stroke-dasharray="49" stroke-dashoffset="49" opacity=".85"/>
+    <line class="xrav-draw" style="animation-delay:.68s"
+      x1="884" y1="11" x2="858" y2="53" stroke="#c9a96e" stroke-width="1.9" stroke-linecap="round"
+      stroke-dasharray="49" stroke-dashoffset="49" opacity=".85"/>
+
+    <!-- X3 (sempre più debole — si sta sciogliendo) -->
+    <line class="xrav-draw" style="animation-delay:.96s"
+      x1="896" y1="11" x2="922" y2="53" stroke="#c9a96e" stroke-width="1.6" stroke-linecap="round"
+      stroke-dasharray="49" stroke-dashoffset="49" opacity=".6"/>
+    <line class="xrav-draw" style="animation-delay:1.16s"
+      x1="922" y1="11" x2="896" y2="53" stroke="#c9a96e" stroke-width="1.6" stroke-linecap="round"
+      stroke-dasharray="49" stroke-dashoffset="49" opacity=".6"/>
+
+    <!-- ── filo che corre orizzontalmente verso destra (scucitura) ── -->
+    <path class="xrav-thread"
+      d="M938 32 C960 27 982 37 1004 32 C1026 27 1048 37 1070 32 C1092 27 1118 35 1148 31 C1168 28 1196 34 1220 30"
+      stroke="#c9a96e" stroke-width="1.4" fill="none" opacity=".65"
+      stroke-dasharray="300" stroke-dashoffset="300"/>
+  </svg>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-logo">L.G. Shoes</div>
+  <div class="footer-company">Tomaificio L.G. Shoes SRL</div>
+  <nav class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#chi-siamo">Chi Siamo</a>
+    <a href="#produzione">Produzione</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <hr class="footer-divider" />
+  <p class="footer-copy">© 2025 Tomaificio L.G. Shoes SRL – Tutti i diritti riservati</p>
+  <p class="footer-piva">P.IVA 09049831218 · Via Cristoforo Colombo, 15 – 80018 Mugnano di Napoli (NA)</p>
+</footer>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+  /* ── Mobile full-screen menu ── */
+  const burger     = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () =>
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu()
+  );
+
+  /* close button inside the menu */
+  document.getElementById('mobileClose').addEventListener('click', closeMenu);
+
+  /* close when a link is tapped */
+  mobileMenu.querySelectorAll('a[href^="#"]').forEach(a =>
+    a.addEventListener('click', closeMenu)
+  );
+
+  /* close on Escape key */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  /* ── Active nav link on scroll ── */
+  const sections = document.querySelectorAll('section[id]');
+  const links    = document.querySelectorAll('.nav-links a');
+  const navObs   = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => navObs.observe(s));
+
+  /* ── Contact form ── */
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  });
+
+  /* ── Scroll-reveal ── */
+  const revealEls = document.querySelectorAll('.value-card, .prod-step, .info-block, .info-panel');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(22px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    revealObs.observe(el);
+  });
+
+  /* ══════════════════════════════════
+     CRAFT ANIMATIONS
+  ══════════════════════════════════ */
+
+  /* ══════════════════════════════════
+     STITCH LOOP
+     • forbici partono a SX e vanno a DX (responsive)
+     • ago visibile a SX durante l'andata
+     • dopo il taglio: ago torna DX→SX, loop
+  ══════════════════════════════════ */
+  const TRAVEL_DUR  = 5500;  // ms forbici sx→dx
+  const RETURN_DUR  = 3200;  // ms ago dx→sx
+  const CUT_DUR     = 1400;  // ms taglio
+  const HIDE_DUR    = 400;   // ms fade forbici
+  const PAUSE_RESET = 500;   // ms pausa
+
+  function runStitch(div) {
+    const needle   = div.querySelector('.stitch-needle');
+    const line     = div.querySelector('.stitch-line');
+    const shine    = div.querySelector('.stitch-shine');
+    const scissors = div.querySelector('.stitch-scissors');
+    /* larghezza reale in CSS px — per essere responsive */
+    const W = div.querySelector('svg').getBoundingClientRect().width;
+
+    /* ── 1. RESET ── */
+    needle.style.transition   = 'none';
+    scissors.style.transition = 'none';
+    line.style.transition     = 'none';
+    shine.style.opacity       = '0';
+    shine.style.animation     = 'none';
+    /* ago: visibile a sinistra (posizione 0 = bordo sinistro) */
+    needle.style.opacity    = '1';
+    needle.style.transform  = 'translateX(0px)';
+    /* forbici: partono leggermente fuori schermo a sinistra */
+    scissors.style.opacity  = '0.8';
+    scissors.style.transform = 'translateX(-60px)';
+    scissors.classList.remove('cutting');
+    line.style.strokeDashoffset = '2000';
+
+    div.offsetHeight; /* reflow */
+
+    /* ── 2. FORBICI SX → DX (+ linea che si disegna) ── */
+    scissors.style.transition = `transform ${TRAVEL_DUR}ms linear`;
+    line.style.transition     = `stroke-dashoffset ${TRAVEL_DUR}ms linear`;
+    scissors.style.transform  = `translateX(${W + 20}px)`;
+    line.style.strokeDashoffset = '0';
+
+    /* ── 3. FORBICI ARRIVATE → TAGLIANO ── */
+    setTimeout(() => {
+      scissors.classList.add('cutting');
+
+      /* ── 4. FORBICI SPARISCONO + SHIMMER ── */
+      setTimeout(() => {
+        scissors.classList.remove('cutting');
+        scissors.style.transition = 'opacity 0.4s';
+        scissors.style.opacity    = '0';
+        shine.style.opacity       = '1';
+        shine.style.animation     = 'shimmer-sweep 1.8s linear infinite';
+
+        /* ── 5. AGO RITORNA DX → SX ── */
+        setTimeout(() => {
+          needle.style.transition = 'none';
+          needle.style.transform  = `translateX(${W + 50}px)`;
+          div.offsetHeight;
+          needle.style.transition = `transform ${RETURN_DUR}ms linear`;
+          line.style.transition   = `stroke-dashoffset ${RETURN_DUR}ms linear`;
+          needle.style.transform  = 'translateX(0px)';
+          line.style.strokeDashoffset = '2000';
+
+          /* ── 6. PAUSA → LOOP ── */
+          setTimeout(() => {
+            needle.style.transition = 'opacity 0.3s';
+            needle.style.opacity    = '0';
+            shine.style.opacity     = '0';
+            setTimeout(() => { runStitch(div); }, PAUSE_RESET);
+          }, RETURN_DUR);
+
+        }, HIDE_DUR);
+      }, CUT_DUR);
+    }, TRAVEL_DUR + 100);
+  }
+
+  /* avvia ogni stitch divider quando entra nel viewport */
+  const stitchObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      runStitch(e.target);
+      stitchObs.unobserve(e.target);
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('[data-stitch]').forEach(el => stitchObs.observe(el));
+</script>
+
 </body>
 </html>
