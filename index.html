@@ -553,10 +553,6 @@
     section, .brands-strip { position: relative; }
 
     /* ── keyframes globali ── */
-    @keyframes needle-bob {
-      0%,100% { transform: translateY(-2px); }
-      40%,60% { transform: translateY(20px); }
-    }
     @keyframes thread-flow {
       from { stroke-dashoffset: 0; }
       to   { stroke-dashoffset: -28; }
@@ -573,64 +569,9 @@
       from { opacity: 0; transform: translateX(-50%) translateY(6px); }
       to   { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
-    @keyframes float-needle {
-      0%,100% { transform: translateY(0) rotate(-8deg); }
-      50%      { transform: translateY(-10px) rotate(-5deg); }
-    }
     @keyframes pulse-gold {
       0%,100% { opacity: .45; }
       50%      { opacity: .85; }
-    }
-
-    /* ── Ago decorativo — animazioni direzionali ── */
-    .deco-needle {
-      position: absolute; pointer-events: none; z-index: 2; width: 48px;
-      filter: drop-shadow(0 0 8px rgba(201,169,110,.5));
-    }
-
-    /* ogni posizione ha una propria animazione con rotazione diversa */
-    .deco-needle.pos-br {
-      bottom: 7%; right: 5%;
-      animation: float-br 4s ease-in-out infinite, gold-glow 4s ease-in-out infinite;
-    }
-    .deco-needle.pos-bl {
-      bottom: 7%; left: 5%;
-      animation: float-bl 5.5s ease-in-out infinite, gold-glow 5.5s ease-in-out infinite;
-    }
-    .deco-needle.pos-tr {
-      top: 9%; right: 5%;
-      animation: float-tr 3.8s ease-in-out infinite, gold-glow 3.8s ease-in-out infinite;
-    }
-    .deco-needle.pos-tl {
-      top: 9%; left: 5%;
-      animation: float-tl 4.8s ease-in-out infinite, gold-glow 4.8s ease-in-out infinite;
-    }
-    @keyframes float-br {
-      0%    { transform: rotate(-8deg)  translate(0px,   0px); }
-      25%   { transform: rotate(6deg)   translate(5px,  -12px); }
-      50%   { transform: rotate(-14deg) translate(-3px,  18px); }
-      75%   { transform: rotate(10deg)  translate(7px,   6px); }
-      100%  { transform: rotate(-8deg)  translate(0px,   0px); }
-    }
-    @keyframes float-bl {
-      0%    { transform: rotate(8deg)   translate(0px,  0px); }
-      30%   { transform: rotate(-12deg) translate(-5px, 14px); }
-      55%   { transform: rotate(16deg)  translate(4px, -8px); }
-      80%   { transform: rotate(-6deg)  translate(-7px, 10px); }
-      100%  { transform: rotate(8deg)   translate(0px,  0px); }
-    }
-    @keyframes float-tr {
-      0%    { transform: rotate(12deg)  translate(0px,   0px); }
-      25%   { transform: rotate(-8deg)  translate(-4px, -10px); }
-      50%   { transform: rotate(18deg)  translate(6px,   14px); }
-      75%   { transform: rotate(-4deg)  translate(3px,  -6px); }
-      100%  { transform: rotate(12deg)  translate(0px,   0px); }
-    }
-    @keyframes float-tl {
-      0%    { transform: rotate(-12deg) translate(0px,  0px); }
-      35%   { transform: rotate(8deg)   translate(5px, -12px); }
-      65%   { transform: rotate(-18deg) translate(-3px, 10px); }
-      100%  { transform: rotate(-12deg) translate(0px,  0px); }
     }
 
     /* ── "Fatto a mano" tag centrato ── */
@@ -673,9 +614,9 @@
       transform-box: fill-box; transform-origin: 55% 23%;
       animation: sc-idle-dn 2.5s ease-in-out infinite;
     }
-    /* forbici slim (divider 4) */
-    .stitch-divider[data-slim] .sc-blade-up { transform-origin: 58% 73%; }
-    .stitch-divider[data-slim] .sc-blade-dn { transform-origin: 58% 25%; }
+    /* forbici slim (divider 4) — stesse proporzioni, stessi pivot */
+    .stitch-divider[data-slim] .sc-blade-up { transform-origin: 55% 77%; }
+    .stitch-divider[data-slim] .sc-blade-dn { transform-origin: 55% 23%; }
     @keyframes sc-idle-up {
       0%,100% { transform: rotate(0deg); }
       50%      { transform: rotate(-16deg); }
@@ -781,32 +722,6 @@
   <div class="scroll-hint">Scorri</div>
 
   <!-- Ago destra (in alto, orientamento inclinato) -->
-  <div class="deco-needle pos-tr" style="top:18%;right:6%;width:42px;" aria-hidden="true">
-    <svg viewBox="0 0 48 200" fill="none">
-      <g class="n-body" style="transform-origin:24px 44px;transform:rotate(18deg)">
-        <ellipse cx="24" cy="44" rx="5"   ry="38" fill="#c9a96e" opacity=".7"/>
-        <ellipse cx="24" cy="20" rx="2.8" ry="5"   fill="none" stroke="#e8d5a3" stroke-width="2"/>
-        <path d="M19 80 Q24 96 29 80" fill="#c9a96e" opacity=".75"/>
-      </g>
-      <path d="M24 20 Q38 55 24 90 Q10 122 30 155 Q42 178 24 200"
-        stroke="#c9a96e" stroke-width="1.3" fill="none"
-        stroke-dasharray="6 5" opacity=".45"/>
-    </svg>
-  </div>
-
-  <!-- Ago sinistra in basso -->
-  <div class="deco-needle pos-bl" style="animation-delay:1.4s" aria-hidden="true">
-    <svg viewBox="0 0 48 200" fill="none">
-      <g class="n-body">
-        <ellipse cx="24" cy="44" rx="5.5" ry="40" fill="#c9a96e" opacity=".6"/>
-        <ellipse cx="24" cy="20" rx="3"   ry="5.5" fill="none" stroke="#e8d5a3" stroke-width="2.2"/>
-        <path d="M19 82 Q24 100 29 82" fill="#c9a96e" opacity=".65"/>
-      </g>
-      <path d="M24 20 Q10 55 24 90 Q38 122 18 155 Q6 178 24 200"
-        stroke="#c9a96e" stroke-width="1.3" fill="none"
-        stroke-dasharray="6 5" opacity=".4"/>
-    </svg>
-  </div>
 
   <!-- Stelle dorate (glitter) -->
   <svg class="glitter" style="top:22%;left:9%;width:18px;" aria-hidden="true" viewBox="0 0 20 20">
@@ -829,32 +744,22 @@
 
 <!-- ── CUCITURA 1 ── -->
 <div class="stitch-divider" data-stitch aria-hidden="true" style="background:var(--light);">
-  <svg viewBox="0 0 1450 40" preserveAspectRatio="none">
-    <!-- ago -->
-    <g class="stitch-needle">
-      <ellipse cx="0" cy="20" rx="6"   ry="16" fill="#c9a96e" opacity=".85"/>
-      <ellipse cx="0" cy="11" rx="3"   ry="4.5" fill="none" stroke="#ffe48a" stroke-width="2" opacity=".95"/>
-      <path d="M-6 34 Q0 44 6 34" fill="#c9a96e" opacity=".85"/>
-    </g>
-    <!-- linea principale cucita -->
-    <line class="stitch-line" x1="0" y1="20" x2="1450" y2="20"
+  <svg viewBox="0 0 1450 72" preserveAspectRatio="none">
+    <line class="stitch-line" x1="0" y1="36" x2="1450" y2="36"
       stroke="#c9a96e" stroke-width="2.5" stroke-dasharray="14 8" opacity=".75"/>
-    <!-- shimmer layer dorato che scorre -->
-    <line class="stitch-shine" x1="0" y1="20" x2="1450" y2="20"
+    <line class="stitch-shine" x1="0" y1="36" x2="1450" y2="36"
       stroke="#ffe48a" stroke-width="2.5" opacity=".0"/>
-    <!-- forbici -->
-    <!-- forbici: maniglie a sinistra, lame puntate a destra (direzione di marcia) -->
-    <g class="stitch-scissors" transform="translate(0,6)">
-      <circle cx="25" cy="15" r="2" fill="#c9a96e" opacity=".9"/>
+    <g class="stitch-scissors">
+      <circle cx="50" cy="36" r="5" fill="#c9a96e" opacity=".9"/>
       <g class="sc-blade-up">
-        <circle cx="6"  cy="5"  r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
-        <line x1="12" y1="10" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="25" y1="15" x2="46" y2="20" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="14" fill="none" stroke="#c9a96e" stroke-width="3"/>
+        <line x1="24" y1="21" x2="50" y2="36" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="50" y1="36" x2="92" y2="44" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
       </g>
       <g class="sc-blade-dn">
-        <circle cx="6"  cy="25" r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
-        <line x1="12" y1="20" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="25" y1="15" x2="46" y2="10" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="60" r="14" fill="none" stroke="#c9a96e" stroke-width="3"/>
+        <line x1="24" y1="51" x2="50" y2="36" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="50" y1="36" x2="92" y2="28" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
       </g>
     </g>
   </svg>
@@ -934,28 +839,22 @@
 
 <!-- ── CUCITURA 2 ── -->
 <div class="stitch-divider" data-stitch aria-hidden="true" style="background:#0e0e0e;">
-  <svg viewBox="0 0 1450 40" preserveAspectRatio="none">
-    <g class="stitch-needle">
-      <ellipse cx="0" cy="20" rx="6"   ry="16" fill="#c9a96e" opacity=".85"/>
-      <ellipse cx="0" cy="11" rx="3"   ry="4.5" fill="none" stroke="#ffe48a" stroke-width="2" opacity=".95"/>
-      <path d="M-6 34 Q0 44 6 34" fill="#c9a96e" opacity=".85"/>
-    </g>
-    <line class="stitch-line" x1="0" y1="20" x2="1450" y2="20"
+  <svg viewBox="0 0 1450 72" preserveAspectRatio="none">
+    <line class="stitch-line" x1="0" y1="36" x2="1450" y2="36"
       stroke="#c9a96e" stroke-width="2.5" stroke-dasharray="14 8" opacity=".75"/>
-    <line class="stitch-shine" x1="0" y1="20" x2="1450" y2="20"
+    <line class="stitch-shine" x1="0" y1="36" x2="1450" y2="36"
       stroke="#ffe48a" stroke-width="2.5" opacity=".0"/>
-    <!-- forbici: maniglie a sinistra, lame puntate a destra (direzione di marcia) -->
-    <g class="stitch-scissors" transform="translate(0,6)">
-      <circle cx="25" cy="15" r="2" fill="#c9a96e" opacity=".9"/>
+    <g class="stitch-scissors">
+      <circle cx="50" cy="36" r="5" fill="#c9a96e" opacity=".9"/>
       <g class="sc-blade-up">
-        <circle cx="6"  cy="5"  r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
-        <line x1="12" y1="10" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="25" y1="15" x2="46" y2="20" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="14" fill="none" stroke="#c9a96e" stroke-width="3"/>
+        <line x1="24" y1="21" x2="50" y2="36" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="50" y1="36" x2="92" y2="44" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
       </g>
       <g class="sc-blade-dn">
-        <circle cx="6"  cy="25" r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
-        <line x1="12" y1="20" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="25" y1="15" x2="46" y2="10" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="60" r="14" fill="none" stroke="#c9a96e" stroke-width="3"/>
+        <line x1="24" y1="51" x2="50" y2="36" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="50" y1="36" x2="92" y2="28" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
       </g>
     </g>
   </svg>
@@ -984,28 +883,22 @@
 
 <!-- ── CUCITURA 3 ── -->
 <div class="stitch-divider" data-stitch aria-hidden="true" style="background:var(--dark);">
-  <svg viewBox="0 0 1450 40" preserveAspectRatio="none">
-    <g class="stitch-needle">
-      <ellipse cx="0" cy="20" rx="6"   ry="16" fill="#c9a96e" opacity=".85"/>
-      <ellipse cx="0" cy="11" rx="3"   ry="4.5" fill="none" stroke="#ffe48a" stroke-width="2" opacity=".95"/>
-      <path d="M-6 34 Q0 44 6 34" fill="#c9a96e" opacity=".85"/>
-    </g>
-    <line class="stitch-line" x1="0" y1="20" x2="1450" y2="20"
+  <svg viewBox="0 0 1450 72" preserveAspectRatio="none">
+    <line class="stitch-line" x1="0" y1="36" x2="1450" y2="36"
       stroke="#c9a96e" stroke-width="2.5" stroke-dasharray="14 8" opacity=".75"/>
-    <line class="stitch-shine" x1="0" y1="20" x2="1450" y2="20"
+    <line class="stitch-shine" x1="0" y1="36" x2="1450" y2="36"
       stroke="#ffe48a" stroke-width="2.5" opacity=".0"/>
-    <!-- forbici: maniglie a sinistra, lame puntate a destra (direzione di marcia) -->
-    <g class="stitch-scissors" transform="translate(0,6)">
-      <circle cx="25" cy="15" r="2" fill="#c9a96e" opacity=".9"/>
+    <g class="stitch-scissors">
+      <circle cx="50" cy="36" r="5" fill="#c9a96e" opacity=".9"/>
       <g class="sc-blade-up">
-        <circle cx="6"  cy="5"  r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
-        <line x1="12" y1="10" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="25" y1="15" x2="46" y2="20" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="14" fill="none" stroke="#c9a96e" stroke-width="3"/>
+        <line x1="24" y1="21" x2="50" y2="36" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="50" y1="36" x2="92" y2="44" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
       </g>
       <g class="sc-blade-dn">
-        <circle cx="6"  cy="25" r="7" fill="none" stroke="#c9a96e" stroke-width="1.8"/>
-        <line x1="12" y1="20" x2="25" y2="15" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="25" y1="15" x2="46" y2="10" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="60" r="14" fill="none" stroke="#c9a96e" stroke-width="3"/>
+        <line x1="24" y1="51" x2="50" y2="36" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="50" y1="36" x2="92" y2="28" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
       </g>
     </g>
   </svg>
@@ -1067,25 +960,20 @@
 
 <!-- ── CUCITURA 4 ── -->
 <div class="stitch-divider" data-stitch data-slim aria-hidden="true" style="background:var(--light);">
-  <svg viewBox="0 0 1450 28" preserveAspectRatio="none">
-    <g class="stitch-needle">
-      <ellipse cx="-10" cy="14" rx="4" ry="10" fill="#c9a96e" opacity=".6"/>
-      <ellipse cx="-10" cy="9"  rx="2" ry="3.5" fill="none" stroke="#c9a96e" stroke-width="1.5" opacity=".8"/>
-    </g>
-    <line class="stitch-line" x1="0" y1="14" x2="1450" y2="14"
+  <svg viewBox="0 0 1450 50" preserveAspectRatio="none">
+    <line class="stitch-line" x1="0" y1="25" x2="1450" y2="25"
       stroke="#c9a96e" stroke-width="1.2" stroke-dasharray="12 7" opacity=".35"/>
-    <!-- forbici ridotte: maniglie a sinistra, lame a destra -->
-    <g class="stitch-scissors" transform="translate(0,4)">
-      <circle cx="18" cy="10" r="1.5" fill="#c9a96e" opacity=".9"/>
+    <g class="stitch-scissors">
+      <circle cx="36" cy="25" r="3.5" fill="#c9a96e" opacity=".9"/>
       <g class="sc-blade-up">
-        <circle cx="4"  cy="4"  r="5" fill="none" stroke="#c9a96e" stroke-width="1.4"/>
-        <line x1="8"  y1="7"  x2="18" y2="10" stroke="#c9a96e" stroke-width="1.4" stroke-linecap="round"/>
-        <line x1="18" y1="10" x2="34" y2="14" stroke="#c9a96e" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="8"  cy="8"  r="10" fill="none" stroke="#c9a96e" stroke-width="2.2"/>
+        <line x1="16" y1="15" x2="36" y2="25" stroke="#c9a96e" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="36" y1="25" x2="68" y2="31" stroke="#c9a96e" stroke-width="2.2" stroke-linecap="round"/>
       </g>
       <g class="sc-blade-dn">
-        <circle cx="4"  cy="17" r="5" fill="none" stroke="#c9a96e" stroke-width="1.4"/>
-        <line x1="8"  y1="14" x2="18" y2="10" stroke="#c9a96e" stroke-width="1.4" stroke-linecap="round"/>
-        <line x1="18" y1="10" x2="34" y2="6"  stroke="#c9a96e" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="8"  cy="42" r="10" fill="none" stroke="#c9a96e" stroke-width="2.2"/>
+        <line x1="16" y1="35" x2="36" y2="25" stroke="#c9a96e" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="36" y1="25" x2="68" y2="19" stroke="#c9a96e" stroke-width="2.2" stroke-linecap="round"/>
       </g>
     </g>
   </svg>
@@ -1383,49 +1271,35 @@
   const PAUSE_RESET   = 500;   // ms pausa
 
   function runStitch(div) {
-    const needle   = div.querySelector('.stitch-needle');
     const line     = div.querySelector('.stitch-line');
     const shine    = div.querySelector('.stitch-shine');
     const scissors = div.querySelector('.stitch-scissors');
     const svg      = div.querySelector('svg');
-
-    /* larghezza in unità SVG (viewBox) — NON CSS px!
-       per <g> SVG, CSS translateX(px) = SVG user units */
-    const VW = svg.viewBox.baseVal.width;  // 1450
-
-    /* preserva l'offset Y delle forbici dall'attributo SVG transform */
-    const scM = scissors.getAttribute('transform')?.match(/translate\([^,]*,\s*([\d.]+)/);
-    const scY = scM ? parseFloat(scM[1]) : 0;
+    const VW       = svg.viewBox.baseVal.width;  // 1450 SVG user units
 
     /* ── 1. RESET ── */
-    needle.style.transition   = 'none';
     scissors.style.transition = 'none';
     line.style.transition     = 'none';
     if (shine) { shine.style.opacity = '0'; shine.style.animation = 'none'; }
-    needle.style.opacity      = '1';
-    needle.style.transform    = 'translateX(0px)';
-    scissors.style.opacity    = '0';           /* forbici nascoste all'inizio */
-    scissors.style.transform  = `translate(0px, ${scY}px)`;
+    scissors.style.opacity    = '0';
+    scissors.style.transform  = 'translateX(0px)';
     scissors.classList.remove('cutting');
     line.style.strokeDashoffset = String(VW);
 
     div.offsetHeight; /* reflow */
 
-    /* ── 2. ANDATA: ago + filo partono subito ── */
-    needle.style.transition   = `transform ${TRAVEL_DUR}ms linear`;
-    line.style.transition     = `stroke-dashoffset ${TRAVEL_DUR}ms linear`;
-    needle.style.transform    = `translateX(${VW}px)`;
+    /* ── 2. FILO: si disegna da sx a dx ── */
+    line.style.transition = `stroke-dashoffset ${TRAVEL_DUR}ms linear`;
     line.style.strokeDashoffset = '0';
 
-    /* ── 2b. FORBICI: compaiono dopo SC_DELAY, più lente dell'ago ── */
+    /* ── 2b. FORBICI: compaiono dopo SC_DELAY, viaggiano verso dx ── */
     setTimeout(() => {
       scissors.style.transition = `opacity 0.4s, transform ${SC_TRAVEL_DUR}ms linear`;
       scissors.style.opacity    = '0.8';
-      scissors.style.transform  = `translate(${VW}px, ${scY}px)`;
+      scissors.style.transform  = `translateX(${VW}px)`;
     }, SC_DELAY);
 
     /* ── 3. FORBICI ARRIVANO → TAGLIANO ── */
-    /* aspetta che le forbici arrivino (SC_DELAY + SC_TRAVEL_DUR), non solo l'ago */
     setTimeout(() => {
       scissors.classList.add('cutting');
 
@@ -1439,16 +1313,13 @@
           shine.style.animation = 'shimmer-sweep 1.8s linear infinite';
         }
 
-        /* ── 5. AGO RITORNA DX→SX ── */
+        /* ── 5. FILO SI CANCELLA (ritorno) ── */
         setTimeout(() => {
-          needle.style.transition = `transform ${RETURN_DUR}ms linear`;
-          line.style.transition   = `stroke-dashoffset ${RETURN_DUR}ms linear`;
-          needle.style.transform  = 'translateX(0px)';
+          line.style.transition = `stroke-dashoffset ${RETURN_DUR}ms linear`;
           line.style.strokeDashoffset = String(VW);
 
           /* ── 6. PAUSA → LOOP ── */
           setTimeout(() => {
-            needle.style.opacity = '0';
             if (shine) shine.style.opacity = '0';
             setTimeout(() => { runStitch(div); }, PAUSE_RESET);
           }, RETURN_DUR);
