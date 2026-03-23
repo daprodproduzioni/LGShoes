@@ -48,19 +48,14 @@
     /* ── Logo ── */
     .nav-logo {
       text-decoration: none;
-      display: flex; flex-direction: column; align-items: flex-start;
-      gap: 2px; flex-shrink: 0;
+      display: flex; align-items: center;
+      flex-shrink: 0;
     }
-    .nav-logo .brand {
-      font-family: var(--font-serif);
-      font-size: 1.5rem; color: var(--gold);
-      letter-spacing: 4px; font-style: italic; line-height: 1;
-    }
-    .nav-logo .company {
-      font-size: 0.5rem; letter-spacing: 3px;
-      text-transform: uppercase; font-weight: 700;
-      color: rgba(255,255,255,0.35);
-      line-height: 1;
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
 
     /* ── Desktop links ── */
@@ -131,18 +126,13 @@
     .mobile-menu-logo {
       position: absolute; top: 0; left: 0; right: 0;
       height: var(--nav-h);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 3px;
+      display: flex;
+      align-items: center; justify-content: center;
     }
-    .mobile-menu-logo .m-brand {
-      font-family: var(--font-serif);
-      font-size: 1.4rem; color: var(--gold);
-      letter-spacing: 4px; font-style: italic;
-    }
-    .mobile-menu-logo .m-company {
-      font-size: 0.47rem; letter-spacing: 3px;
-      text-transform: uppercase; color: rgba(255,255,255,0.3);
-      font-weight: 700;
+    .mobile-menu-logo img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
     }
 
     /* nav items */
@@ -259,16 +249,6 @@
       transition: background .25s, transform .2s;
     }
     .hero-cta:hover { background: var(--gold-lt); transform: translateY(-2px); }
-    .scroll-hint {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      color: rgba(255,255,255,0.3); font-size: 0.68rem; letter-spacing: 2px;
-      text-transform: uppercase; animation: bounce 2s infinite;
-    }
-    .scroll-hint::after { content: '↓'; display: block; text-align: center; margin-top: 4px; font-size: 1rem; }
-    @keyframes bounce {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50%      { transform: translateX(-50%) translateY(6px); }
-    }
 
     /* ════════════════════════════════
        SECTION COMMONS
@@ -403,18 +383,28 @@
       border: 1px solid rgba(201,169,110,0.08);
     }
     .prod-step {
-      background: var(--dark);
+      position: relative;
       padding: 2rem 1.6rem;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      transition: transform .3s;
+    }
+    .prod-step::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(10,10,10,0.72);
       transition: background .3s;
     }
-    .prod-step:hover { background: rgba(201,169,110,0.05); }
+    .prod-step:hover::before { background: rgba(10,10,10,0.55); }
+    .prod-step > * { position: relative; z-index: 1; }
     .prod-num {
       font-family: var(--font-serif); font-size: 2.2rem;
-      color: rgba(201,169,110,0.18); font-style: italic;
+      color: rgba(201,169,110,0.4); font-style: italic;
       line-height: 1; margin-bottom: .8rem;
     }
     .prod-step h4 { font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: .6rem; }
-    .prod-step p { font-size: 0.83rem; color: rgba(255,255,255,0.45); }
+    .prod-step p { font-size: 0.83rem; color: rgba(255,255,255,0.6); }
 
     /* ════════════════════════════════
        CONTATTI
@@ -668,8 +658,7 @@
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu di navigazione">
   <button class="mobile-menu-close" id="mobileClose" aria-label="Chiudi menu">&#x2715;</button>
   <div class="mobile-menu-logo">
-    <span class="m-brand">L.G. Shoes</span>
-    <span class="m-company">Tomaificio</span>
+    <img src="logoLGshoes.png" alt="LG Shoes Logo" />
   </div>
   <ul class="mobile-menu-links">
     <li><a href="#home">Home</a></li>
@@ -688,8 +677,7 @@
 <nav class="navbar">
   <div class="nav-inner">
     <a href="#home" class="nav-logo">
-      <span class="brand">L.G. Shoes</span>
-      <span class="company">Tomaificio</span>
+      <img src="logoLGshoes.png" alt="LG Shoes Logo" />
     </a>
 
     <ul class="nav-links" id="navLinks">
@@ -719,7 +707,6 @@
     </p>
     <a href="#chi-siamo" class="hero-cta">Scopri la nostra storia</a>
   </div>
-  <div class="scroll-hint">Scorri</div>
 
   <!-- Ago destra (in alto, orientamento inclinato) -->
 
@@ -914,42 +901,42 @@
       Il nostro processo produttivo è supportato da macchinari di ultima generazione e garantisce la massima qualità e precisione in ogni fase lavorativa, dalla materia prima alla tomaia finita.
     </p>
     <div class="prod-grid">
-      <div class="prod-step">
+      <div class="prod-step" style="background-image:url('1.png')">
         <div class="prod-num">01</div>
         <h4>Taglio</h4>
         <p>Computerizzato, a trancia e a mano su ogni tipo di materiale, per la massima precisione e resa.</p>
       </div>
-      <div class="prod-step">
+      <div class="prod-step" style="background-image:url('2.png')">
         <div class="prod-num">02</div>
         <h4>Scarnitura e Sbassatura</h4>
         <p>Lavorazioni curate nel minimo dettaglio per spessori impeccabili e una vestibilità perfetta.</p>
       </div>
-      <div class="prod-step">
+      <div class="prod-step" style="background-image:url('3.png')">
         <div class="prod-num">03</div>
         <h4>Cambratura</h4>
         <p>Modellazione su qualsiasi pellame, dal camoscio alla vernice, con risultati di assoluta qualità.</p>
       </div>
-      <div class="prod-step">
+      <div class="prod-step" style="background-image:url('4.png')">
         <div class="prod-num">04</div>
         <h4>Timbratura</h4>
         <p>Marcatura di precisione sia a caldo che a freddo, per un'identificazione impeccabile del prodotto.</p>
       </div>
-      <div class="prod-step">
+      <div class="prod-step" style="background-image:url('5.png')">
         <div class="prod-num">05</div>
         <h4>Incollaggio e Accoppiatura</h4>
         <p>Applicazione accurata di collanti (anche all'acqua) per la perfetta adesione di rinforzi e componenti.</p>
       </div>
-      <div class="prod-step">
+      <div class="prod-step" style="background-image:url('6.png')">
         <div class="prod-num">06</div>
         <h4>Giunteria e Cucitura</h4>
         <p>Assemblaggio di alta precisione affidato a personale altamente specializzato e formato.</p>
       </div>
-      <div class="prod-step">
+      <div class="prod-step" style="background-image:url('7.png')">
         <div class="prod-num">07</div>
         <h4>Lissatura</h4>
         <p>Rifinitura impeccabile del bordo a taglio vivo per un risultato esteticamente perfetto.</p>
       </div>
-      <div class="prod-step">
+      <div class="prod-step" style="background-image:url('8.png')">
         <div class="prod-num">08</div>
         <h4>Controllo Qualità</h4>
         <p>Verifica puntuale di ogni singola tomaia per garantire l'eccellenza assoluta del prodotto finito.</p>
